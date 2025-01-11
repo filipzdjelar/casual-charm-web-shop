@@ -1,10 +1,10 @@
 import { type FC } from 'react';
-import ProductCard from '@/components/ProductCard';
-import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
-import useFetchProducts from '@/hooks/useFetchProducts';
 import { IProduct } from '@/types/products';
+import ProductCard from '@/components/ProductCard';
+import useFetchProducts from '@/hooks/useFetchProducts';
+import ProductCardSkeleton from '@/components/skeletons/ProductCardSkeleton';
 
-const AllCategoriesPage: FC = () => {
+const AllProducts: FC = () => {
   const { products, isProductsLoading } = useFetchProducts();
 
   return (
@@ -22,4 +22,4 @@ const AllCategoriesPage: FC = () => {
   );
 };
 
-export default AllCategoriesPage;
+export default AllProducts;

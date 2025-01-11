@@ -1,16 +1,12 @@
 'use client';
 
-import { useState, type FC } from 'react';
-
-const categories = [
-  { name: 'Electronics', path: '/electronics' },
-  { name: 'Jewelry', path: '/jewelery' },
-  { name: "Men's Clothing", path: '/mens-clothing' },
-  { name: "Women's Clothing", path: '/womens-clothing' },
-];
+import { memo, useState, type FC } from 'react';
+import useFetchCategories from '@/hooks/useFetchCategories';
 
 const Header: FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const { categories } = useFetchCategories();
 
   return (
     <header className="bg-white shadow-md">
@@ -48,16 +44,16 @@ const Header: FC = () => {
                 </svg>
               </div>
               <ul className="flex flex-col items-center justify-between min-h-[250px]">
-                {categories.map((category) => (
+                {categories?.map((category) => (
                   <li
-                    key={category.name}
+                    key={category}
                     className="border-b border-gray-400 my-4 uppercase"
                   >
                     <a
-                      href={category.path}
+                      href={category}
                       className="text-black px-4 py-2 rounded transition-colors duration-300 hover:text-white hover:bg-[#85144B]"
                     >
-                      {category.name}
+                      {category}
                     </a>
                   </li>
                 ))}
@@ -66,13 +62,13 @@ const Header: FC = () => {
           </section>
 
           <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
-            {categories.map((category) => (
-              <li key={category.name}>
+            {categories?.map((category) => (
+              <li key={category}>
                 <a
-                  href={category.path}
+                  href={category}
                   className="text-black px-4 py-2 rounded transition-colors duration-300 hover:text-white hover:bg-[#85144B]"
                 >
-                  {category.name}
+                  {category}
                 </a>
               </li>
             ))}

@@ -1,9 +1,9 @@
 'use client';
 
-import AllCategoriesPage from '@/pages/AllCategoriesPage';
+import ProductsCategory from '@/pages/ProductsCategory';
 
 const Home = () => {
-  return <AllCategoriesPage />;
+  return <ProductsCategory />;
 };
 
 export default Home;
