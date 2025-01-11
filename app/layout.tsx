@@ -1,23 +1,24 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { ReactNode } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './globals.css';
 import Layout from '@/components/layout/Layout';
 import ToastBar from '@/components/ToastBar';
 
-export const metadata: Metadata = {
-  title: 'Cesual Charm',
-  description: 'Cesual Charm web shop',
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
+  const queryClient = new QueryClient();
   return (
     <html lang="en">
       <body>
         <ToastBar />
-        <Layout>{children}</Layout>
+        <QueryClientProvider client={queryClient}>
+          <Layout>{children}</Layout>
+        </QueryClientProvider>
       </body>
     </html>
   );

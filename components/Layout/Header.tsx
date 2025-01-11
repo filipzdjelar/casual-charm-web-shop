@@ -1,7 +1,11 @@
 'use client';
 
-import { memo, useState, type FC } from 'react';
+import Link from 'next/link';
+import { useState, type FC } from 'react';
 import useFetchCategories from '@/hooks/useFetchCategories';
+
+import logo from './../../public/be-trendy-logo.png';
+import Image from 'next/image';
 
 const Header: FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -10,10 +14,10 @@ const Header: FC = () => {
 
   return (
     <header className="bg-white shadow-md">
-      <div className="flex items-center justify-between border-b border-gray-400 py-8 px-6">
-        <a href="/">
-          <span className="text-[#85144B] text-lg font-bold">Casual Charm</span>
-        </a>
+      <div className="flex items-center justify-between border-b border-gray-400  py-2 px-6">
+        <Link href={'/'}>
+          <Image alt="logo" src={logo} width={150} />
+        </Link>
         <nav>
           <section className="MOBILE-MENU flex lg:hidden">
             <div
@@ -49,12 +53,13 @@ const Header: FC = () => {
                     key={category}
                     className="border-b border-gray-400 my-4 uppercase"
                   >
-                    <a
+                    <Link
                       href={category}
-                      className="text-black px-4 py-2 rounded transition-colors duration-300 hover:text-white hover:bg-[#85144B]"
+                      className="text-black px-4 py-2 rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
                     >
-                      {category}
-                    </a>
+                      {category.toUpperCase()}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -64,12 +69,12 @@ const Header: FC = () => {
           <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
             {categories?.map((category) => (
               <li key={category}>
-                <a
+                <Link
                   href={category}
-                  className="text-black px-4 py-2 rounded transition-colors duration-300 hover:text-white hover:bg-[#85144B]"
+                  className="text-black border-b border-gray-400 px-4 py-2 hover:rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
                 >
-                  {category}
-                </a>
+                  {category.toUpperCase()}
+                </Link>
               </li>
             ))}
           </ul>
