@@ -5,14 +5,14 @@ import {
   FETCH_PRODUCTS_BY_CATEGORY_KEY,
 } from '@/api/products';
 
-const useFetchProductsByCategory = (category: string) => {
+const useFetchProductsByCategory = (limit: number, category?: string) => {
   const {
     data: products,
     isLoading: isProductsLoading,
     error: isErrorFetchingProducts,
   } = useQuery<IProduct[]>({
     queryKey: [FETCH_PRODUCTS_BY_CATEGORY_KEY, category],
-    queryFn: async () => await fetchProductsByCategory(category),
+    queryFn: async () => await fetchProductsByCategory(limit, category),
     enabled: !!category,
   });
 

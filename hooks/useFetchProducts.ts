@@ -2,14 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import { FETCH_PRODUCTS_KEY, fetchProductsApi } from '../api/products';
 import { IProduct } from '@/types/products';
 
-const useFetchProducts = () => {
+const useFetchProducts = (limit: number) => {
   const {
-    data: products,
+    data: products = [],
     isLoading: isProductsLoading,
-    error: isErrorFetchingProducts,
+    isError: isErrorFetchingProducts,
   } = useQuery<IProduct[]>({
-    queryKey: [FETCH_PRODUCTS_KEY],
-    queryFn: async () => await fetchProductsApi(),
+    queryKey: [FETCH_PRODUCTS_KEY, limit],
+    queryFn: async () => await fetchProductsApi(limit),
   });
 
   return { products, isProductsLoading, isErrorFetchingProducts };
