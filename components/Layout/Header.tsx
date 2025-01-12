@@ -54,7 +54,7 @@ const Header: FC = () => {
                     className="border-b border-gray-400 my-4 uppercase"
                   >
                     <Link
-                      href={category}
+                      href={`/${category}`}
                       className="text-black px-4 py-2 rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
                       onClick={() => setIsNavOpen((prev) => !prev)}
                     >
@@ -70,7 +70,7 @@ const Header: FC = () => {
             {categories?.map((category) => (
               <li key={category}>
                 <Link
-                  href={category}
+                  href={`/${category}`}
                   className="text-black border-b border-gray-400 px-4 py-2 hover:rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
                 >
                   {category.toUpperCase()}
