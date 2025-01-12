@@ -1,3 +1,5 @@
+'use client';
+
 import ProductPage from '@/pages/ProductPage';
 
 const page = () => {
