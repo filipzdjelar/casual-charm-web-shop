@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FC, useMemo } from 'react';
 import { IProduct } from '@/types/products';
-import useFetchProductsByCategory from '@/hooks/useFetchProductsByCategory';
+import useFetchProducts from '@/hooks/useFetchProducts';
 import ProductsFromSameCategorySkeleton from './skeletons/ProductsFromSameCategorySkeleton';
 
 interface IProps {
@@ -11,7 +11,7 @@ interface IProps {
 
 const ProductsFromSameCategory: FC<IProps> = ({ product }) => {
   const limit = 4;
-  const { products, isProductsLoading } = useFetchProductsByCategory(
+  const { products, isProductsLoading } = useFetchProducts(
     limit,
     product?.category
   );
