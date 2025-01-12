@@ -1,5 +1,7 @@
+import ProductPage from '@/pages/ProductPage';
+
 const page = () => {
-  return <div>page</div>;
+  return <ProductPage />;
 };
 
 export default page;
