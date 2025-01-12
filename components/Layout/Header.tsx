@@ -1,20 +1,34 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, type FC } from 'react';
 import useFetchCategories from '@/hooks/useFetchCategories';
 
 import logo from './../../public/be-trendy-logo.png';
-import Image from 'next/image';
 
 const Header: FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { categories, isCategoriesLoading } = useFetchCategories();
 
-  const { categories } = useFetchCategories();
+  const handleMenuToggle = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setIsNavOpen((prev) => !prev);
+  };
+
+  const renderSkeleton = () => (
+    <div className="skeleton-loader flex gap-8">
+      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
+      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
+      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
+      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
+    </div>
+  );
 
   return (
     <header className="bg-white shadow-md">
-      <div className="flex items-center justify-between border-b border-gray-400  py-2 px-6">
+      <div className="flex items-center justify-between border-b border-gray-400 py-2 px-6">
         <Link href={'/'}>
           <Image alt="logo" src={logo} width={150} />
         </Link>
@@ -22,7 +36,7 @@ const Header: FC = () => {
           <section className="MOBILE-MENU flex lg:hidden">
             <div
               className="HAMBURGER-ICON space-y-2"
-              onClick={() => setIsNavOpen((prev) => !prev)}
+              onClick={handleMenuToggle}
             >
               <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
               <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
@@ -48,56 +62,66 @@ const Header: FC = () => {
                 </svg>
               </div>
               <ul className="flex flex-col items-center justify-between min-h-[250px]">
-                {categories?.map((category) => (
-                  <li
-                    key={category}
-                    className="border-b border-gray-400 my-4 uppercase"
-                  >
-                    <Link
-                      href={`/${category}`}
-                      className="text-black px-4 py-2 rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
-                      onClick={() => setIsNavOpen((prev) => !prev)}
-                    >
-                      {category.toUpperCase()}
-                    </Link>
-                  </li>
-                ))}
+                {isCategoriesLoading
+                  ? renderSkeleton()
+                  : categories?.map((category) => (
+                      <li
+                        key={category}
+                        className="border-b border-gray-400 my-4 uppercase"
+                      >
+                        <Link
+                          href={`/${category}`}
+                          className="text-black px-4 py-2 rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
+                          onClick={() => setIsNavOpen(false)}
+                        >
+                          {category.toUpperCase()}
+                        </Link>
+                      </li>
+                    ))}
               </ul>
             </div>
           </section>
 
           <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
-            {categories?.map((category) => (
-              <li key={category}>
-                <Link
-                  href={`/${category}`}
-                  className="text-black border-b border-gray-400 px-4 py-2 hover:rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
-                >
-                  {category.toUpperCase()}
-                </Link>
-              </li>
-            ))}
+            {isCategoriesLoading
+              ? renderSkeleton()
+              : categories?.map((category) => (
+                  <li key={category}>
+                    <Link
+                      href={`/${category}`}
+                      className="text-black border-b border-gray-400 px-4 py-2 hover:rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
+                    >
+                      {category.toUpperCase()}
+                    </Link>
+                  </li>
+                ))}
           </ul>
         </nav>
         <style>{`
-      .hideMenuNav {
-        display: none;
-      }
-      .showMenuNav {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        background: white;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-    `}</style>
+          .hideMenuNav {
+            display: none;
+          }
+          .showMenuNav {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: white;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+          }
+          html, body {
+            overflow: ${isNavOpen ? 'hidden' : 'auto'};
+          }
+          .skeleton-loader .skeleton-item {
+            border-radius: 4px;
+          }
+        `}</style>
       </div>
     </header>
   );
