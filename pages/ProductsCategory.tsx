@@ -40,13 +40,13 @@ const ProductsCategory: FC<IProps> = ({ category }) => {
   }, [isProductsLoading]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-8 sm:p-20 relative">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100  relative">
       {isProductsLoading ? (
         <div className="inset-0 flex items-center justify-center">
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
           {products?.map((product: IProduct) => (
             <ProductCard product={product} key={product.id} />
           ))}
