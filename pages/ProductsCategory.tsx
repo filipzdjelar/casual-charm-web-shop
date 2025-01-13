@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect, type FC, useMemo } from 'react';
-import { IProduct } from '@/types/products';
+import { IProduct, ESortOrder } from '@/types/products';
 import ProductCard from '@/components/ProductCard';
 import useFetchProducts from '@/hooks/useFetchProducts';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import ProductCardSkeleton from '@/components/skeletons/ProductCardSkeleton';
+import NotFound from '@/components/NotFound';
+import AscDescButton from '@/components/AscDescButton';
+
 interface IProps {
   category?: string;
 }
@@ -12,9 +15,15 @@ const ProductsCategory: FC<IProps> = ({ category }) => {
   const [limit, setLimit] = useState(4);
   const [allProducts, setAllProducts] = useState<IProduct[]>([]);
   const [lastFetchedCount, setLastFetchedCount] = useState<number | null>(null);
+  const [sortOrder, setSortOrder] = useState<ESortOrder>(ESortOrder.DESC);
   const [consecutiveIdenticalFetches, setConsecutiveIdenticalFetches] =
     useState(0);
-  const { products, isProductsLoading } = useFetchProducts(limit, category);
+
+  const { products, isProductsLoading } = useFetchProducts(
+    limit,
+    sortOrder,
+    category
+  );
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const memoizedProducts = useMemo(() => {
@@ -23,6 +32,13 @@ const ProductsCategory: FC<IProps> = ({ category }) => {
     );
     return uniqueProducts;
   }, [allProducts]);
+
+  useEffect(() => {
+    setAllProducts([]);
+    setLimit(4);
+    setConsecutiveIdenticalFetches(0);
+    setLastFetchedCount(null);
+  }, [sortOrder]);
 
   useEffect(() => {
     if (products.length) {
@@ -39,7 +55,11 @@ const ProductsCategory: FC<IProps> = ({ category }) => {
   }, [products, lastFetchedCount]);
 
   useEffect(() => {
-    if (consecutiveIdenticalFetches >= 2) return;
+    if (
+      consecutiveIdenticalFetches >= 2 ||
+      (!isProductsLoading && allProducts.length === 0)
+    )
+      return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -70,11 +90,19 @@ const ProductsCategory: FC<IProps> = ({ category }) => {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-          {memoizedProducts.map((product: IProduct) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
+        <div>
+          <AscDescButton sortOrder={sortOrder} setSortOrder={setSortOrder} />
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+            {memoizedProducts.map((product: IProduct) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          </div>
         </div>
+      )}
+
+      {!isProductsLoading && allProducts.length === 0 && (
+        <NotFound textMessage="No available Products for selected category" />
       )}
 
       {isProductsLoading && allProducts.length !== 0 && (

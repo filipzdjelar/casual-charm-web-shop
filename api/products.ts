@@ -1,15 +1,16 @@
 import { toast } from 'react-toastify';
-import { IProduct } from '@/types/products';
+import { ESortOrder, IProduct } from '@/types/products';
 
 export const FETCH_PRODUCTS_KEY = 'fetchProducts';
 export const fetchProductsApi = async (
   limit: number,
+  sortOrder: ESortOrder,
   category?: string
 ): Promise<IProduct[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products${
       category ? `/category/${category}` : ''
-    }?limit=${limit}`
+    }?limit=${limit}&sort=${sortOrder}`
   );
 
   if (!response.ok) {
