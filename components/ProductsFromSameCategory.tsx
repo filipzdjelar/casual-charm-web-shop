@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FC, useMemo } from 'react';
-import { IProduct } from '@/types/products';
+import { ESortOrder, IProduct } from '@/types/products';
 import useFetchProducts from '@/hooks/useFetchProducts';
 import ProductsFromSameCategorySkeleton from './skeletons/ProductsFromSameCategorySkeleton';
 
@@ -13,6 +13,7 @@ const ProductsFromSameCategory: FC<IProps> = ({ product }) => {
   const limit = 4;
   const { products, isProductsLoading } = useFetchProducts(
     limit,
+    ESortOrder.ASC,
     product?.category
   );
 
