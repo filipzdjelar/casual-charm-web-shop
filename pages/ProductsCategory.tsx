@@ -84,10 +84,13 @@ const ProductsCategory: FC<IProps> = ({ category }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 relative">
       {isProductsLoading && allProducts.length === 0 ? (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-          {[...Array(4)].map((_, index) => (
-            <ProductCardSkeleton key={index} />
-          ))}
+        <div>
+          <div className="w-16 h-12 bg-gray-300 rounded-md my-4"></div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+            {[...Array(4)].map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
+          </div>
         </div>
       ) : (
         <div>
