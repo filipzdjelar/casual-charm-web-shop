@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Overview
 
-## Getting Started
+This project is a React app that uses **Next.js** for server-side rendering, **Tailwind CSS** for styling, and **TanStack React Query** for data fetching. It displays products from the **Fake Store API** and implements pagination and mobile responsiveness.
 
-First, run the development server:
+## Features
+
+1. **Display 4 items initially**: The app fetches products from the Fake Store API and displays the first 4 items.
+2. **Product Card**: Each product displays only its image and name. The card is clickable.
+3. **Mobile Responsiveness**: The layout is responsive, showing 4 columns of products initially and switching to 2 columns on smaller screens.
+4. **Product Details**: When a product is clicked, the user is directed to a product page that displays all the information of that product (`/products/[page-num]`).
+5. **Infinite Scroll**: When the user reaches the end of the screen, 4 more products are automatically fetched and displayed.
+
+## Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yourusername/casual-charm-web-shop.git
+```
+
+## Installation and Setup
+
+### Install Dependencies
+
+```bash
+cd casual-charm-web-shop
+npm install
+```
+
+### Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Available Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - Starts the Next.js development server
+- `npm run build` - Builds the application for production
+- `npm run start` - Starts the production server
+- `npm run lint` - Runs ESLint to check for code issues
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Dependencies
 
-## Learn More
+### Core Dependencies
 
-To learn more about Next.js, take a look at the following resources:
+- **@tanstack/react-query** - Data-fetching and state management
+- **next** - React framework for SSR and static generation
+- **react** - UI library
+- **react-dom** - React DOM utilities
+- **react-toastify** - Notification system
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app uses the **Fake Store API** to fetch product data.
 
-## Deploy on Vercel
+- **Endpoint**: `https://fakestoreapi.com/products`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Sample Response:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```json
+[
+  {
+    "id": 1,
+    "title": "Product Name",
+    "price": 10.99,
+    "description": "Product description here.",
+    "category": "Category name",
+    "image": "https://example.com/product-image.jpg",
+    "rating": { "rate": 4.5, "count": 120 }
+  }
+]
+```
+
+The app uses the **Fake Store API** to fetch categories data.
+
+- **Endpoint**: `https://fakestoreapi.com/categories`
+
+### Sample Response:
+
+```json
+["electronics", "jewelery", "men's clothing", "women's clothing"]
+```
