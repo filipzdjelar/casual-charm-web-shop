@@ -1,3 +1,5 @@
+import { QueryClient } from '@tanstack/react-query';
+
 export interface IProduct {
   id: number;
   title: string;
@@ -15,3 +17,5 @@ export enum ESortOrder {
   DESC = 'desc',
   ASC = 'asc',
 }
+
+export const queryClient = new QueryClient();

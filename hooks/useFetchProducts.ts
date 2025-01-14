@@ -1,7 +1,7 @@
 'use client';
 
-import { QueryClient, useQuery } from '@tanstack/react-query';
-import { ESortOrder, IProduct } from '@/types/products';
+import { useQuery } from '@tanstack/react-query';
+import { ESortOrder, IProduct, queryClient } from '@/types/products';
 import { FETCH_PRODUCTS_KEY, fetchProductsApi } from '../api/products';
 
 const useFetchProducts = (
@@ -9,8 +9,6 @@ const useFetchProducts = (
   sortOrder: ESortOrder,
   category?: string
 ) => {
-  const queryClient = new QueryClient();
-
   const {
     data: products = [],
     isLoading: isProductsLoading,

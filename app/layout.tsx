@@ -1,11 +1,11 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
-import { QueryClient } from '@tanstack/react-query';
+import { ReactNode } from 'react';
 import './globals.css';
 import Layout from '@/components/Layout';
 import ToastBar from '@/components/ToastBar';
 import dynamic from 'next/dynamic';
+import { queryClient } from '@/types/products';
 
 const DynamicQueryClientProvider = dynamic(
   () => import('@tanstack/react-query').then((mod) => mod.QueryClientProvider),
@@ -17,8 +17,6 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const [queryClient] = useState(() => new QueryClient());
-
   return (
     <html lang="en">
       <body>

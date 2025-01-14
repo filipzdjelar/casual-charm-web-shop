@@ -1,12 +1,10 @@
 'use client';
 
-import { QueryClient, useQuery } from '@tanstack/react-query';
-import { IProduct } from '@/types/products';
+import { useQuery } from '@tanstack/react-query';
+import { IProduct, queryClient } from '@/types/products';
 import { FETCH_PRODUCT_KEY, fetchProductApi } from '../api/products';
 
 const useFetchProduct = (productId?: string) => {
-  const queryClient = new QueryClient();
-
   const {
     data: product,
     isLoading: isProductLoading,
