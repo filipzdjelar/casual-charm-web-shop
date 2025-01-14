@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef, useEffect, type FC, useMemo } from 'react';
 import { IProduct, ESortOrder } from '@/types/products';
 import ProductCard from '@/components/ProductCard';
