@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { FC, useMemo } from 'react';
 import { ESortOrder, IProduct } from '@/types/products';
 import useFetchProducts from '@/hooks/useFetchProducts';
-import ProductsFromSameCategorySkeleton from './skeletons/ProductsFromSameCategorySkeleton';
+import ProductsFromSameCategorySkeleton from './ProductsFromSameCategorySkeleton';
 
 interface IProps {
   product: IProduct;

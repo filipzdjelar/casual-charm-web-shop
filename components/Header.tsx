@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState, type FC } from 'react';
 import useFetchCategories from '@/hooks/useFetchCategories';
 
-import logo from './../../public/be-trendy-logo.png';
+import logo from './../public/be-trendy-logo.png';
 
 const Header: FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);

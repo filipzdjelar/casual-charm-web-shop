@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './globals.css';
-import Layout from '@/components/layout/Layout';
+import Layout from '@/components/Layout';
 import ToastBar from '@/components/ToastBar';
 
 export default function RootLayout({

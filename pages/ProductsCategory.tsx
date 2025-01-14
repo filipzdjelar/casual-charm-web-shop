@@ -3,7 +3,7 @@ import { IProduct, ESortOrder } from '@/types/products';
 import ProductCard from '@/components/ProductCard';
 import useFetchProducts from '@/hooks/useFetchProducts';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import ProductCardSkeleton from '@/components/skeletons/ProductCardSkeleton';
+import ProductCardSkeleton from '@/components/ProductCardSkeleton';
 import NotFound from '@/components/NotFound';
 import AscDescButton from '@/components/AscDescButton';
 

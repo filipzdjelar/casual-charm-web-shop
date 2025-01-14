@@ -4,8 +4,8 @@ import NotFound from '@/components/NotFound';
 import useFetchProduct from '@/hooks/useFetchProduct';
 import ProductDetails from '@/components/ProductDetails';
 import ProductsFromSameCategory from '@/components/ProductsFromSameCategory';
-import ProductPageSkeletonImage from '@/components/skeletons/ProductPageSkeletonImage';
-import ProductPageSkeletonDetails from '@/components/skeletons/ProductPageSkeletonDetails';
+import ProductPageSkeletonImage from '@/components/ProductPageSkeletonImage';
+import ProductPageSkeletonDetails from '@/components/ProductPageSkeletonDetails';
 
 const ProductPage: React.FC = () => {
   const pathname = usePathname();
