@@ -1,6 +1,4 @@
-'use client';
-
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './globals.css';
 import Layout from '@/components/Layout';
@@ -12,6 +10,15 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   const [queryClient] = useState(() => new QueryClient());
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <html lang="en">
