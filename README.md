@@ -15,7 +15,7 @@ This project is a React app that uses **Next.js** for server-side rendering, **T
 ### Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/casual-charm-web-shop.git
+git clone https://github.com/filipzdjelar/casual-charm-web-shop.git
 ```
 
 ## Installation and Setup
@@ -45,7 +45,7 @@ npm run dev
 ### Core Dependencies
 
 - **@tanstack/react-query** - Data-fetching and state management
-- **next** - React framework for SSR and static generation
+- **next** - React framework
 - **react** - UI library
 - **react-dom** - React DOM utilities
 - **react-toastify** - Notification system
