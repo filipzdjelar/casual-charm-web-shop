@@ -1,3 +1,4 @@
+'use client';
 import { useQuery } from '@tanstack/react-query';
 import { FETCH_CATEGORIES_KEY, fetchCategoriesApi } from '@/api/products';
 

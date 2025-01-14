@@ -1,3 +1,5 @@
+'use client';
+
 import { useQuery } from '@tanstack/react-query';
 import { IProduct } from '@/types/products';
 import { FETCH_PRODUCT_KEY, fetchProductApi } from '../api/products';
