@@ -19,6 +19,16 @@ export default function RootLayout({
 }>) {
   const [queryClient] = useState(() => new QueryClient());
 
+  if (typeof window !== 'undefined') {
+    return (
+      <html lang="en">
+        <body>
+          <div></div>
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en">
       <body>
