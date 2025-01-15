@@ -1,30 +1,25 @@
 'use client';
 
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
 import './globals.css';
-import Layout from '@/components/Layout';
-import ToastBar from '@/components/ToastBar';
-import dynamic from 'next/dynamic';
-import { queryClient } from '@/types/products';
+import queryClient from '@/utils/queryClient';
+import Layout from '@/components/layout/Layout';
+import ToastBar from '@/components/layout/ToastBar';
 
-const DynamicQueryClientProvider = dynamic(
-  () => import('@tanstack/react-query').then((mod) => mod.QueryClientProvider),
-  { ssr: false }
+interface IProps {
+  children: ReactNode;
+}
+
+const RootLayout: React.FC<IProps> = ({ children }) => (
+  <html lang="en">
+    <body>
+      <QueryClientProvider client={queryClient}>
+        <ToastBar />
+        <Layout>{children}</Layout>
+      </QueryClientProvider>
+    </body>
+  </html>
 );
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body>
-        <DynamicQueryClientProvider client={queryClient}>
-          <ToastBar />
-          <Layout>{children}</Layout>
-        </DynamicQueryClientProvider>
-      </body>
-    </html>
-  );
-}
+export default RootLayout;

@@ -1,13 +1,11 @@
-'use client';
-
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import NotFound from '@/components/NotFound';
 import useFetchProduct from '@/hooks/useFetchProduct';
 import ProductDetails from '@/components/ProductDetails';
-import ProductsFromSameCategory from '@/components/ProductsFromSameCategory';
-import ProductPageSkeletonImage from '@/components/ProductPageSkeletonImage';
-import ProductPageSkeletonDetails from '@/components/ProductPageSkeletonDetails';
+import ProductsFromSameCategory from '@/components/skeletons/ProductsFromSameCategory';
+import ProductPageSkeletonImage from '@/components/skeletons/ProductPageSkeletonImage';
+import ProductPageSkeletonDetails from '@/components/skeletons/ProductPageSkeletonDetails';
 
 const ProductPage: React.FC = () => {
   const pathname = usePathname();

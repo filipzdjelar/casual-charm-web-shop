@@ -1,7 +1,6 @@
-'use client';
 import { useQuery } from '@tanstack/react-query';
+import queryClient from '@/utils/queryClient';
 import { FETCH_CATEGORIES_KEY, fetchCategoriesApi } from '@/api/products';
-import { queryClient } from '@/types/products';
 
 const useFetchCategories = () => {
   const {

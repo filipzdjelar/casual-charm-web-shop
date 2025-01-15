@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { IProduct } from '@/types/products';
 
-interface ProductDetailsProps {
+interface IProps {
   product: IProduct;
 }
 
-const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+const ProductDetails: React.FC<IProps> = ({ product }) => {
   return (
     <>
       <h1 className="text-2xl font-bold text-gray-800 mb-4">{product.title}</h1>

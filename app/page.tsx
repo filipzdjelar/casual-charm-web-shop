@@ -1,9 +1,10 @@
 'use client';
 
+import { type FC } from 'react';
 import ProductsCategory from '@/pages/ProductsCategory';
 
-const Home = () => {
+const ProductsCategoryPage: FC = () => {
   return <ProductsCategory />;
 };
 
-export default Home;
+export default ProductsCategoryPage;

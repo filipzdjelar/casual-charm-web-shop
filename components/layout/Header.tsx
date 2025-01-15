@@ -1,11 +1,9 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, type FC } from 'react';
+import logo from './../../public/be-trendy-logo.png';
 import useFetchCategories from '@/hooks/useFetchCategories';
-
-import logo from './../public/be-trendy-logo.png';
+import HeaderCategoriesSkeleton from '../skeletons/HeaderCategoriesSkeleton';
 
 const Header: FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -16,15 +14,6 @@ const Header: FC = () => {
 
     setIsNavOpen((prev) => !prev);
   };
-
-  const renderSkeleton = () => (
-    <div className="skeleton-loader flex gap-8">
-      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
-      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
-      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
-      <div className="skeleton-item w-32 h-6 mb-4 bg-gray-300 animate-pulse" />
-    </div>
-  );
 
   return (
     <header className="bg-white shadow-md">
@@ -62,39 +51,43 @@ const Header: FC = () => {
                 </svg>
               </div>
               <ul className="flex flex-col items-center justify-between min-h-[250px]">
-                {isCategoriesLoading
-                  ? renderSkeleton()
-                  : categories?.map((category) => (
-                      <li
-                        key={category}
-                        className="border-b border-gray-400 my-4 uppercase"
+                {isCategoriesLoading ? (
+                  <HeaderCategoriesSkeleton />
+                ) : (
+                  categories?.map((category) => (
+                    <li
+                      key={category}
+                      className="border-b border-gray-400 my-4 uppercase"
+                    >
+                      <Link
+                        href={`/${category}`}
+                        className="text-black px-4 py-2 rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
+                        onClick={() => setIsNavOpen(false)}
                       >
-                        <Link
-                          href={`/${category}`}
-                          className="text-black px-4 py-2 rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
-                          onClick={() => setIsNavOpen(false)}
-                        >
-                          {category.toUpperCase()}
-                        </Link>
-                      </li>
-                    ))}
+                        {category.toUpperCase()}
+                      </Link>
+                    </li>
+                  ))
+                )}
               </ul>
             </div>
           </section>
 
           <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
-            {isCategoriesLoading
-              ? renderSkeleton()
-              : categories?.map((category) => (
-                  <li key={category}>
-                    <Link
-                      href={`/${category}`}
-                      className="text-black border-b border-gray-400 px-4 py-2 hover:rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
-                    >
-                      {category.toUpperCase()}
-                    </Link>
-                  </li>
-                ))}
+            {isCategoriesLoading ? (
+              <HeaderCategoriesSkeleton />
+            ) : (
+              categories?.map((category) => (
+                <li key={category}>
+                  <Link
+                    href={`/${category}`}
+                    className="text-black border-b border-gray-400 px-4 py-2 hover:rounded transition-colors duration-300 hover:bg-gray-100 font-medium"
+                  >
+                    {category.toUpperCase()}
+                  </Link>
+                </li>
+              ))
+            )}
           </ul>
         </nav>
         <style>{`

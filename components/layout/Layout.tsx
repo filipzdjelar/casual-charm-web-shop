@@ -1,4 +1,3 @@
-'use client';
 import { ReactNode, type FC } from 'react';
 import Header from './Header';
 import Footer from './Footer';

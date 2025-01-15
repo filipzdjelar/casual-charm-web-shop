@@ -1,5 +1,6 @@
-'use client';
-const Footer = () => {
+import { type FC } from 'react';
+
+const Footer: FC = () => {
   return (
     <footer className="bg-white border-t">
       <div className="container mx-auto px-8 py-4 text-center">

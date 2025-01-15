@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'fakestoreapi.com',
+        hostname: `${process.env.NEXT_PUBLIC_API_URL}`,
       },
     ],
   },
